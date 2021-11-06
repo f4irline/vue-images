@@ -2,7 +2,6 @@ import axios from "axios";
 import qs from "qs";
 
 const CLIENT_ID = "0cbbefb0da00e20";
-// const CLIENT_SECRET = "5f4dc1c68efcef993bb7db2e19981b03976dd6b8";
 const ROOT_URL = "https://api.imgur.com";
 
 export default {
@@ -20,5 +19,18 @@ export default {
         Authorization: `Bearer ${token}`
       } 
     });
+  },
+  uploadImages(images, token) {
+    const promises = Array.from(images).map(image => {
+      const formData = new FormData();
+      formData.append("image", image);
+      return axios.post(`${ROOT_URL}/3/image`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },  
+      });
+    });
+    
+    return Promise.all(promises);
   }
 }
