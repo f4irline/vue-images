@@ -16,13 +16,13 @@ const mutations = {
 
 const actions = {
   login: () => api.login(),
-  finalizeLogin: ({ commit }, hash) => {
+  finalizeLogin({ commit }, hash) {
     const queryParams = qs.parse(hash.replace("#", ""));
     commit("setToken", queryParams.access_token);
     window.localStorage.setItem("imgur_token", queryParams.access_token);
     router.push("/");
   },
-  logout: ({ commit }) => {
+  logout({ commit }) {
     commit("setToken", undefined);
     window.localStorage.removeItem("imgur_token");
   },

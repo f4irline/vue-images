@@ -1,7 +1,8 @@
+import axios from "axios";
 import qs from "qs";
 
-const CLIENT_ID = "4c005364a37aeec";
-// const CLIENT_SECRET = "5b061f824d9a6bef095c0cf44256bb66b5b77eca";
+const CLIENT_ID = "0cbbefb0da00e20";
+// const CLIENT_SECRET = "5f4dc1c68efcef993bb7db2e19981b03976dd6b8";
 const ROOT_URL = "https://api.imgur.com";
 
 export default {
@@ -12,5 +13,12 @@ export default {
     };
 
     window.location = `${ROOT_URL}/oauth2/authorize?${qs.stringify(queryString)}`;
+  },
+  fetchImages(token) {
+    return axios.get('https://api.imgur.com/3/account/me/images', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      } 
+    });
   }
 }
