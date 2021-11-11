@@ -17,17 +17,5 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Add Heroku login credentials
-        run: |
-          cat > ~/.netrc <<EOF
-            machine api.heroku.com
-              login ${{ secrets.HEROKU_EMAIL }}
-              password ${{ secrets.HEROKU_API_KEY }}
-            machine git.heroku.com
-              login ${{ secrets.HEROKU_EMAIL }}
-              password ${{ secrets.HEROKU_API_KEY }}
-          EOF
-      - name: Add Heroku remote
-        run: heroku git:remote --app ${{ secrets.HEROKU_APP_NAME }}
       - name: Publish to Heroku
-        run: git push heroku master
+        run: git push -f https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:master
