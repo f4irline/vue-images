@@ -6,6 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "build:prod": "vue-cli-service build --mode production",
+    "postinstall": "cd ./server && yarn && cd .. && yarn build:prod",
+    "start": "node ./server/server.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
