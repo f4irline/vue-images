@@ -9,7 +9,7 @@ on:
 
 jobs:
   build_and_test:
-    uses: f4irline/vue-images/.github/workflows/build_and_test.yml
+    uses: f4irline/vue-images/.github/workflows/build_and_test.yml@v1
   deploy:
     runs-on: ubuntu-latest
     needs: build_and_test
