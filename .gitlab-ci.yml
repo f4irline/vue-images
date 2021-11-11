@@ -1,3 +1,4 @@
+
 stages:
   - build
   - test
@@ -5,17 +6,21 @@ stages:
 
 build:
   stage: build
+  image: node:latest
   script:
-    - echo "Compiling the code..."
-    - echo "Compile complete."
+    - yarn install --frozen-lockfile
+    - yarn build:prod
 
 test:
   stage: test
+  image: node:latest
   script:
-    - echo "Running tests..."
+    - yarn install --frozen-lockfile
+    - yarn lint
     
 deploy:
   stage: deploy
+  image: ubuntu:latest
   script:
     - echo "Deploying application..."
     - echo "Application successfully deployed."
