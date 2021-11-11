@@ -1,5 +1,6 @@
 stages:
   - build
+  - test
   - deploy
 
 build:
@@ -8,6 +9,11 @@ build:
     - echo "Compiling the code..."
     - echo "Compile complete."
 
+test:
+  stage: test
+  script:
+    - echo "Running tests..."
+    
 deploy:
   stage: deploy
   script:
