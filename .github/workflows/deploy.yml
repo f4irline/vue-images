@@ -28,11 +28,11 @@ jobs:
         env: 
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: heroku container:login 
-      - name: Build and push
-        env:
+      - name: Add Heroku remote
+        env: 
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:push -a ${{ secrets.HEROKU_APP_NAME }} web 
-      - name: Release
-        env:
+        run: heroku git:remote --app ${{ secrets.HEROKU_APP_NAME }}
+      - name: Push to Heroku
+        env: 
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku container:release -a ${{ secrets.HEROKU_APP_NAME }} web 
+        run: git push heroku master
