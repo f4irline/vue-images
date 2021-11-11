@@ -17,8 +17,10 @@ jobs:
       with:
         node-version: 16.x
         cache: 'yarn'
-    - run: yarn
-    - run: yarn build:prod
+    - name: Install dependencies
+      run: yarn
+    - name: Run build
+      run: yarn build:prod
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -39,4 +41,4 @@ jobs:
       - name: Add Heroku remote
         run: heroku git:remote --app ${{ secrets.HEROKU_APP_NAME }}
       - name: Publish to Heroku
-        run: git push heroku master -f
+        run: git push heroku master
