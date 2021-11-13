@@ -15,13 +15,20 @@ build:
       - node_modules/
     expire_in: 1 hour
 
-test:
+lint:
   stage: test
   dependencies:
     - build
   script:
     - yarn lint
-    
+
+test:
+  stage: test
+  dependencies:
+    - build
+  script:
+    - yarn test:unit
+
 deploy:
   stage: deploy
   only:
