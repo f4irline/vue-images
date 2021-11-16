@@ -18,7 +18,7 @@ jobs:
         cache: 'yarn'
         cache-dependency-path: '**/yarn.lock'
     - name: Install dependencies
-      run: yarn install --prefer-offline --frozen-lockfile
+      run: yarn install --prefer-offline --frozen-lockfile --verbose
     - name: Run build
       run: yarn build:prod
   lint:
@@ -33,7 +33,7 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: '**/yarn.lock'
       - name: Install dependencies
-        run: yarn install --prefer-offline --frozen-lockfile
+        run: yarn install --prefer-offline --frozen-lockfile --verbose
       - name: Run ESLint
         run: yarn lint
   test:
@@ -48,6 +48,6 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: '**/yarn.lock'
       - name: Install dependencies
-        run: yarn install --prefer-offline --frozen-lockfile
+        run: yarn install --prefer-offline --frozen-lockfile --verbose
       - name: Run tests
         run: yarn test:unit
