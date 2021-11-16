@@ -30,6 +30,7 @@ jobs:
         with:
           node-version: 16.x
           cache: 'yarn'
+          cache-dependency-path: '**/yarn.lock'
       - uses: actions/checkout@v2
       - name: Install dependencies
         run: yarn install --frozen-lockfile
@@ -44,6 +45,7 @@ jobs:
         with:
           node-version: 16.x
           cache: 'yarn'
+          cache-dependency-path: '**/yarn.lock'
       - uses: actions/checkout@v2
       - name: Install dependencies
         run: yarn install --frozen-lockfile
