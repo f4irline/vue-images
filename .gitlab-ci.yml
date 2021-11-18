@@ -31,9 +31,7 @@ test:
     
 deploy:
   stage: deploy
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "master"' # Jos ollaan `master` haarassa
-      when: manual # Suoritetaan manuaalisesti
-    - when: never # Muuten ei suoriteta ollenkaan
+  only:
+    - master
   script:
     - git push -f https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:master
