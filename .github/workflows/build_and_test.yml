@@ -11,9 +11,15 @@ jobs:
       run: yarn
     - name: Run build
       run: yarn build:prod
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run ESLint
+        run: yarn lint
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2 # Käytetään checkout actionia, joka checkouttaa Git repon runnerille
-      - name: Run ESLint
-        run: yarn lint
+      - uses: actions/checkout@v2
+      - name: Run tests
+        run: yarn test:unit
