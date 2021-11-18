@@ -8,6 +8,7 @@
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "build:prod": "vue-cli-service build --mode production",
+    "postinstall": "./postinstall.sh",
     "start": "node ./server/server.js"
   },
   "dependencies": {
