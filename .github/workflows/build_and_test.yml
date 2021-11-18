@@ -7,7 +7,13 @@ jobs:
     runs-on: ubuntu-latest # Määritetään millä runnerilla jobi suoritetaan
     steps:
     - uses: actions/checkout@v2 # Käytetään checkout actionia, joka checkouttaa Git repon runnerille
-    - name: Install dependencies
+    - name: Use Node.js 16.x
+      uses: actions/setup-node@v2 # Käytetään setup-node actionia, joka asentaa meille haluamamme node-version
+      with:
+        node-version: 16.x
+        cache: 'yarn' # Cachetaan yarnin välimuisti
+        cache-dependency-path: '**/yarn.lock' # Cachetaan yarn.lock, jolloin cache invalidoidaan jos yarn.lock muuttuu
+    - name: Install dependencies # Asennetaan riippuvuudet
       run: yarn
     - name: Run build
       run: yarn build:prod
@@ -15,11 +21,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: 'yarn'
+          cache-dependency-path: '**/yarn.lock'
+      - name: Install dependencies # Asennetaan riippuvuudet
+        run: yarn
       - name: Run ESLint
         run: yarn lint
   test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: 'yarn'
+          cache-dependency-path: '**/yarn.lock'
+      - name: Install dependencies # Asennetaan riippuvuudet
+        run: yarn
       - name: Run tests
         run: yarn test:unit
