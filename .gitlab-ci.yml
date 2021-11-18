@@ -1,6 +1,4 @@
-image: node:16.13.0
-
-stages:
+stages: # Määritetään staget tehtäville)
   - build
   - test
   - deploy
