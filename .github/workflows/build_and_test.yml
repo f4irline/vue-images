@@ -14,5 +14,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2 # Käytetään checkout actionia, joka checkouttaa Git repon runnerille
       - name: Run ESLint
         run: yarn lint
