@@ -1,53 +1,18 @@
 name: Build and test
 
-on:
-  push:
-    branches-ignore: 
-      - 'master'
-  workflow_call:
+on: push # Määritellään milloin workflow suoritetaan
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # Määritetään millä runnerilla jobi suoritetaan
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js 16.x
-      uses: actions/setup-node@v2
-      with:
-        node-version: 16.x
-        cache: 'yarn'
-        cache-dependency-path: '**/yarn.lock'
+    - uses: actions/checkout@v2 # Käytetään checkout actionia, joka checkouttaa Git repon runnerille
     - name: Install dependencies
-      run: yarn install --frozen-lockfile
+      run: yarn
     - name: Run build
       run: yarn build:prod
-  lint:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16.x
-          cache: 'yarn'
-          cache-dependency-path: '**/yarn.lock'
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-      - name: Run ESLint
-        run: yarn lint
   test:
     runs-on: ubuntu-latest
-    needs: build
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js 16.x
-        uses: actions/setup-node@v2
-        with:
-          node-version: 16.x
-          cache: 'yarn'
-          cache-dependency-path: '**/yarn.lock'
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-      - name: Run tests
-        run: yarn test:unit
+      - name: Run ESLint
+        run: yarn lint
