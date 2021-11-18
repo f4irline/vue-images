@@ -14,11 +14,12 @@ jobs:
         cache: 'yarn' # Cachetaan yarnin välimuisti
         cache-dependency-path: '**/yarn.lock' # Cachetaan yarn.lock, jolloin cache invalidoidaan jos yarn.lock muuttuu
     - name: Install dependencies # Asennetaan riippuvuudet
-      run: yarn
+      run: yarn install --frozen-lockfile
     - name: Run build
       run: yarn build:prod
   lint:
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 16.x
@@ -28,11 +29,12 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: '**/yarn.lock'
       - name: Install dependencies # Asennetaan riippuvuudet
-        run: yarn
+        run: yarn install --frozen-lockfile
       - name: Run ESLint
         run: yarn lint
   test:
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js 16.x
@@ -42,6 +44,6 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: '**/yarn.lock'
       - name: Install dependencies # Asennetaan riippuvuudet
-        run: yarn
+        run: yarn install --frozen-lockfile
       - name: Run tests
         run: yarn test:unit
