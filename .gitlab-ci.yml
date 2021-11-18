@@ -1,4 +1,6 @@
-stages: # Määritetään staget tehtäville)
+image: node:16.13.0 # Käytetään node Docker-imagea, jossa npm on valmiiksi asennettuna
+
+stages:
   - build
   - test
   - deploy
@@ -6,19 +8,15 @@ stages: # Määritetään staget tehtäville)
 build:
   stage: build
   script:
-    - echo "Running build..."
+    - yarn install --frozen-lockfile # Asennetaan riippuvuudet
+    - yarn build:prod # Buildataan projekti
 
 lint:
   stage: test
   script:
-    - echo "Running lint..."
+    - yarn lint # Suoritetaan lint
 
 test:
   stage: test
   script:
-    - echo "Running tests..."
-
-deploy:
-  stage: deploy
-  script:
-    - echo "Running deploy..."
+    - yarn test:unit # Suoritetaan testit
