@@ -1,6 +1,8 @@
 name: Build and test
 
 on: push # Määritellään milloin workflow suoritetaan
+  push: # Pushatessa
+  workflow_call: # Jostain muusta workflowista kutsuttaessa
 
 jobs:
   build:
