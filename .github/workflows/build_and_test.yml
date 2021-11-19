@@ -1,6 +1,10 @@
 name: Build and test
 
-on: push # Määritellään milloin workflow suoritetaan
+on:
+  push: # Pushatessa
+    branches-ignore: # Paitsi jos pushattu master haaraan
+      - "master"
+  workflow_call: # Toisesta workflowista kutsuessa
 
 jobs:
   build:

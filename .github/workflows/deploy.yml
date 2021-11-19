@@ -5,6 +5,8 @@ on:
     branches: [master] # Suoritetaan vain master haarassa
 
 jobs:
+  build_and_test: # Määritetään build_and_test job
+    uses: f4irline/vue-images/.github/workflows/build_and_test.yml@master # Haetaan reposta master haarasta build_and_test workflow
   deploy:
     runs-on: ubuntu-latest
     steps:
