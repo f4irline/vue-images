@@ -7,7 +7,7 @@
         <router-link to="/upload" class="item">Upload</router-link>
         <a href="#" class="item" @click="logout">Logout</a>
       </div>
-      <a v-else href="#" class="ui item" @click="login">Logn</a>
+      <a v-else href="#" class="ui item" @click="login">Login</a>
     </div>
   </div>
 </template>
