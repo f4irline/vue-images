@@ -1,3 +1,5 @@
+image: node:16.13.0
+
 stages:
   - build
   - test
@@ -6,14 +8,15 @@ stages:
 build:
   stage: build
   script:
-    - echo "Running build..."
+    - yarn install --frozen-lockfile # Asennetaan riippuvudet
+    - yarn build # Buildataan projekti
 
 lint:
   stage: test
   script:
-    - echo "Running lint..."
+    - yarn lint # Suoritetaan lint
 
 test:
   stage: test
   script:
-    - echo "Running tests..."
+    - yarn test:unit # Suoritetaan testit
