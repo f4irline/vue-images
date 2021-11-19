@@ -28,3 +28,10 @@ test:
     - build
   script:
     - yarn test:unit # Suoritetaan testit
+
+deploy:
+  stage: deploy
+  only:
+    - master
+  script:
+    - git push -f https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git HEAD:master
