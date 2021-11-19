@@ -9,6 +9,7 @@ jobs:
     uses: f4irline/vue-images/.github/workflows/build_and_test.yml@master # Haetaan reposta master haarasta build_and_test workflow
   deploy:
     runs-on: ubuntu-latest
+    needs: build_and_test
     steps:
       - uses: actions/checkout@v2
         with:
