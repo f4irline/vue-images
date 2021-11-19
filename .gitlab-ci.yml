@@ -10,13 +10,21 @@ build:
   script:
     - yarn install --frozen-lockfile # Asennetaan riippuvudet
     - yarn build # Buildataan projekti
+  artifacts: # Ladataan node_modulet artifakteihin
+    paths:
+      - node_modules/
+    expire_in: 1 hour # Tunnin kuluttua artifakti poistetaan
 
 lint:
   stage: test
+  dependencies: # Riippuu build-jobista -> Artifaktit haetaan build-jobilta tälle jobille
+    - build
   script:
     - yarn lint # Suoritetaan lint
 
 test:
   stage: test
+  dependencies: # Riippuu build-jobista -> Artifaktit haetaan build-jobilta tälle jobille
+    - build
   script:
     - yarn test:unit # Suoritetaan testit
